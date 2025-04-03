@@ -1,0 +1,61 @@
+CREATE TABLE IF NOT EXISTS Cliente (
+  cpf INT NOT NULL,
+  nome VARCHAR(45) NULL,
+  endereco VARCHAR(45) NULL,
+  total VARCHAR(45) NULL,
+  PRIMARY KEY (cpf)
+);
+CREATE TABLE IF NOT EXISTS Mesa (
+  numeroMesa CHAR NOT NULL,
+  Cliente_cpf INT NULL, -- Cliente_cpf can be NULL if the table is empty
+  PRIMARY KEY (numeroMesa),
+  CONSTRAINT fk_Mesa_Cliente1
+    FOREIGN KEY (Cliente_cpf)
+    REFERENCES Cliente (cpf)
+);
+CREATE TABLE IF NOT EXISTS Atendente (
+  matricula CHAR NOT NULL,
+  nome VARCHAR(45) NULL,
+  salario VARCHAR(45) NULL,
+  telefone VARCHAR(45) NULL,
+  Atendente_matricula CHAR NULL,
+  PRIMARY KEY (matricula),
+  CONSTRAINT fk_Atendente_Atendente1
+    FOREIGN KEY (Atendente_matricula)
+    REFERENCES Atendente (matricula)
+);
+CREATE TABLE IF NOT EXISTS Pedido (
+  numPedido INT NOT NULL,
+  horaInicio VARCHAR(45) NULL,
+  horaFim VARCHAR(45) NULL,
+  tempo TIME NULL,
+  Atendente_matricula CHAR NOT NULL,
+  Mesa_numeroMesa CHAR NOT NULL,
+  PRIMARY KEY (numPedido),
+  CONSTRAINT fk_Pedido_Atendente1
+    FOREIGN KEY (Atendente_matricula)
+    REFERENCES Atendente (matricula),
+  CONSTRAINT fk_Pedido_Mesa1
+    FOREIGN KEY (Mesa_numeroMesa)
+    REFERENCES Mesa (numeroMesa)
+);
+CREATE TABLE IF NOT EXISTS Prato (
+  codPrato VARCHAR(45) NOT NULL,
+  nome VARCHAR(45) NULL,
+  preco INT NULL,
+  Pedido_numPedido INT NOT NULL,
+  PRIMARY KEY (codPrato),
+  CONSTRAINT fk_Prato_Pedido1
+    FOREIGN KEY (Pedido_numPedido)
+    REFERENCES Pedido (numPedido)
+);
+CREATE TABLE IF NOT EXISTS Bebida (
+  codBebida VARCHAR(45) NOT NULL,
+  nome VARCHAR(45) NULL,
+  preco INT NULL,
+  Pedido_numPedido INT NOT NULL,
+  PRIMARY KEY (codBebida),
+  CONSTRAINT fk_Bebida_Pedido1
+    FOREIGN KEY (Pedido_numPedido)
+    REFERENCES Pedido (numPedido)
+);
