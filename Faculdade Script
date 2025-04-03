@@ -1,0 +1,59 @@
+CREATE TABLE IF NOT EXISTS Curso (
+  codCurso INT NOT NULL,
+  nome VARCHAR(45) NULL,
+  cargaHoraria VARCHAR(15) NULL,
+  PRIMARY KEY (codCurso)
+);
+CREATE TABLE IF NOT EXISTS Materia (
+  codMateria INT NOT NULL,
+  nome VARCHAR(45) NULL,
+  cargaHoraria VARCHAR(5) NULL,
+  PRIMARY KEY (codMateria)
+);
+CREATE TABLE IF NOT EXISTS Curso_has_Materia (
+  Curso_codigo INT NOT NULL,
+  Materia_codMateria INT NOT NULL,
+  PRIMARY KEY (Curso_codigo, Materia_codMateria),
+  CONSTRAINT fk_Curso_has_Materia_Curso1
+    FOREIGN KEY (Curso_codigo)
+    REFERENCES Curso (codCurso),
+  CONSTRAINT fk_Curso_has_Materia_Materia1
+    FOREIGN KEY (Materia_codMateria)
+    REFERENCES Materia (codMateria)
+);
+CREATE TABLE IF NOT EXISTS Aluno (
+  matricula INT NOT NULL,
+  nome VARCHAR(45) NULL,
+  Curso_codCurso INT NOT NULL,
+  PRIMARY KEY (matricula),
+  CONSTRAINT fk_Aluno_Curso1
+    FOREIGN KEY (Curso_codCurso)
+    REFERENCES Curso (codCurso)
+);
+CREATE TABLE IF NOT EXISTS email (
+  codEmail INT NOT NULL,
+  email VARCHAR(45) NULL,
+  Aluno_matricula INT NOT NULL,
+  PRIMARY KEY (codEmail),
+  CONSTRAINT fk_email_Aluno1
+    FOREIGN KEY (Aluno_matricula)
+    REFERENCES Aluno (matricula)
+);
+CREATE TABLE IF NOT EXISTS Professor (
+  matriculaProfessor INT NOT NULL,
+  email VARCHAR(250) NULL,
+  PRIMARY KEY (matriculaProfessor)
+);
+CREATE TABLE IF NOT EXISTS Disciplina (
+  codDisciplina INT NOT NULL,
+  Materia_codMateria INT NOT NULL,
+  vagas VARCHAR(45) NULL,
+  Professor_matriculaProfessor INT NOT NULL,
+  PRIMARY KEY (codDisciplina),
+  CONSTRAINT fk_Disciplina_Materia1
+    FOREIGN KEY (Materia_codMateria)
+    REFERENCES Materia (codMateria),
+  CONSTRAINT fk_Disciplina_Professor1
+    FOREIGN KEY (Professor_matriculaProfessor)
+    REFERENCES Professor (matriculaProfessor)
+);
