@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS Cliente (
 );
 CREATE TABLE IF NOT EXISTS Mesa (
   numeroMesa CHAR NOT NULL,
-  Cliente_cpf INT NULL, -- Cliente_cpf can be NULL if the table is empty
+  Cliente_cpf INT NULL, -- Cliente_cpf pode ser null se a mesa está vazia
   PRIMARY KEY (numeroMesa),
   CONSTRAINT fk_Mesa_Cliente1
     FOREIGN KEY (Cliente_cpf)
@@ -18,11 +18,7 @@ CREATE TABLE IF NOT EXISTS Atendente (
   nome VARCHAR(45) NULL,
   salario VARCHAR(45) NULL,
   telefone VARCHAR(45) NULL,
-  Atendente_matricula CHAR NULL,
-  PRIMARY KEY (matricula),
-  CONSTRAINT fk_Atendente_Atendente1
-    FOREIGN KEY (Atendente_matricula)
-    REFERENCES Atendente (matricula)
+  PRIMARY KEY (matricula)
 );
 CREATE TABLE IF NOT EXISTS Pedido (
   numPedido INT NOT NULL,
