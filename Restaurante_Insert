@@ -1,0 +1,101 @@
+-- Populando a tabela Cliente
+INSERT INTO Cliente (cpf, nome, endereco, total) VALUES
+(12345678901, 'João Silva', 'Rua A, 123', '55.80'),
+(98765432109, 'Maria Souza', 'Avenida B, 456', '120.50'),
+(11122233344, 'Carlos Oliveira', 'Travessa C, 789', '32.00'),
+(55566677788, 'Ana Pereira', 'Rua D, 101', '88.75'),
+(99900011122, 'Ricardo Gomes', 'Avenida E, 222', '67.90'),
+(33344455566, 'Fernanda Lima', 'Rua F, 333', '95.20'),
+(77788899900, 'Marcelo Costa', 'Travessa G, 444', '41.50'),
+(22233344455, 'Patrícia Rocha', 'Rua H, 555', '110.30'),
+(66677788899, 'Gustavo Mendes', 'Avenida I, 666', '73.60'),
+(44455566677, 'Camila Santos', 'Rua J, 777', '29.90');
+INSERT INTO Cliente (cpf, nome, endereco, total) VALUES
+(88899900011, 'Lucas Ferreira', 'Travessa K, 888', '150.00'),
+(11223344556, 'Juliana Alves', 'Avenida L, 999', '48.10');
+
+-- Populando a tabela Mesa
+INSERT INTO Mesa (numeroMesa, Cliente_cpf) VALUES
+('A1', 12345678901),
+('A2', 98765432109),
+('B1', 11122233344),
+('B2', 55566677788),
+('C1', 99900011122),
+('C2', 33344455566),
+('D1', 77788899900),
+('D2', 22233344455),
+('E1', 66677788899),
+('E2', 44455566677);
+INSERT INTO Mesa (numeroMesa, Cliente_cpf) VALUES
+('F1', 88899900011),
+('F2', NULL), -- Mesa vazia
+('G1', 11223344556),
+('G2', NULL); -- Outra mesa vazia
+
+-- Populando a tabela Atendente
+INSERT INTO Atendente (matricula, nome, salario, telefone) VALUES
+('AT001', 'Ana Clara', '1800.00', '999991111'),
+('AT002', 'Bruno Alves', '2000.00', '988882222'),
+('AT003', 'Carla Mendes', '1900.00', '977773333'),
+('AT004', 'Daniel Souza', '2100.00', '966664444'),
+('AT005', 'Elisa Rocha', '1850.00', '955555555'),
+('AT006', 'Fábio Costa', '2050.00', '944446666'),
+('AT007', 'Gabriela Lima', '1950.00', '933337777'),
+('AT008', 'Hugo Pereira', '2200.00', '922228888'),
+('AT009', 'Isabela Gomes', '1880.00', '911119999'),
+('AT010', 'João Pedro', '2150.00', '900001212');
+INSERT INTO Atendente (matricula, nome, salario, telefone) VALUES
+('AT011', 'Larissa Vieira', '1920.00', '987654321'),
+('AT012', 'Mateus Nunes', '2080.00', '912345678');
+
+-- Populando a tabela Pedido
+INSERT INTO Pedido (numPedido, horaInicio, horaFim, tempo, Atendente_matricula, Mesa_numeroMesa) VALUES
+(1, '19:00', '19:45', '00:45:00', 'AT001', 'A1'),
+(2, '19:15', '20:30', '01:15:00', 'AT002', 'A2'),
+(3, '19:30', '20:00', '00:30:00', 'AT003', 'B1'),
+(4, '19:45', '21:00', '01:15:00', 'AT004', 'B2'),
+(5, '20:00', '20:50', '00:50:00', 'AT005', 'C1'),
+(6, '20:15', '21:30', '01:15:00', 'AT006', 'C2'),
+(7, '20:30', '21:10', '00:40:00', 'AT007', 'D1'),
+(8, '20:45', '22:00', '01:15:00', 'AT008', 'D2'),
+(9, '21:00', '21:40', '00:40:00', 'AT009', 'E1'),
+(10, '21:15', '22:30', '01:15:00', 'AT010', 'E2');
+INSERT INTO Pedido (numPedido, horaInicio, horaFim, tempo, Atendente_matricula, Mesa_numeroMesa) VALUES
+(11, '21:30', '22:15', '00:45:00', 'AT011', 'F1'),
+(12, '18:45', '19:30', '00:45:00', 'AT012', 'G1');
+
+-- Populando a tabela Prato
+INSERT INTO Prato (codPrato, nome, preco, Pedido_numPedido) VALUES
+('P001', 'Filé de Frango Grelhado', 28, 1),
+('P002', 'Salmão ao Molho de Maracujá', 45, 2),
+('P003', 'Hambúrguer Artesanal', 32, 3),
+('P004', 'Pizza Calabresa', 40, 4),
+('P005', 'Macarrão à Carbonara', 35, 5),
+('P006', 'Feijoada', 50, 6),
+('P007', 'Risoto de Cogumelos', 38, 7),
+('P008', 'Parmegiana de Carne', 42, 8),
+('P009', 'Escondidinho de Carne Seca', 30, 9),
+('P010', 'Lasanha à Bolonhesa', 37, 10);
+INSERT INTO Prato (codPrato, nome, preco, Pedido_numPedido) VALUES
+('P011', 'Porção de Batata Frita', 20, 11),
+('P012', 'Strogonoff de Frango', 33, 12),
+('P013', 'Nhoque ao Sugo', 31, 1),
+('P014', 'Wrap de Frango', 25, 2);
+
+-- Populando a tabela Bebida
+INSERT INTO Bebida (codBebida, nome, preco, Pedido_numPedido) VALUES
+('B001', 'Refrigerante Cola', 7, 1),
+('B002', 'Suco de Laranja', 8, 2),
+('B003', 'Água Mineral', 5, 3),
+('B004', 'Cerveja Pilsen', 10, 4),
+('B005', 'Vinho Tinto Seco', 60, 5),
+('B006', 'Refrigerante Limão', 7, 6),
+('B007', 'Suco de Maracujá', 8, 7),
+('B008', 'Água com Gás', 5, 8),
+('B009', 'Cerveja IPA', 12, 9),
+('B010', 'Vinho Branco Suave', 55, 10);
+INSERT INTO Bebida (codBebida, nome, preco, Pedido_numPedido) VALUES
+('B011', 'Chopp', 9, 11),
+('B012', 'Suco de Abacaxi', 8, 12),
+('B013', 'Ice Tea Pêssego', 7, 1),
+('B014', 'Caipirinha', 15, 2);
