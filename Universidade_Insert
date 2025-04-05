@@ -1,0 +1,113 @@
+-- Populando a tabela Curso
+INSERT INTO Curso (codCurso, nome, cargaHoraria) VALUES
+(1, 'Análise e Desenvolvimento de Sistemas', '2500 horas'),
+(2, 'Ciência da Computação', '3200 horas'),
+(3, 'Engenharia de Software', '3600 horas'),
+(4, 'Redes de Computadores', '2200 horas'),
+(5, 'Segurança da Informação', '2000 horas'),
+(6, 'Inteligência Artificial', '3000 horas'),
+(7, 'Desenvolvimento Web', '1800 horas'),
+(8, 'Banco de Dados', '1600 horas'),
+(9, 'Sistemas de Informação', '2800 horas'),
+(10, 'Jogos Digitais', '2400 horas');
+
+-- Populando a tabela Materia
+INSERT INTO Materia (codMateria, nome, cargaHoraria) VALUES
+(101, 'Lógica de Programação', '80'),
+(102, 'Estrutura de Dados', '90'),
+(103, 'Banco de Dados I', '75'),
+(104, 'Engenharia de Software I', '90'),
+(105, 'Redes de Computadores I', '70'),
+(106, 'Segurança da Informação I', '80'),
+(107, 'Inteligência Artificial I', '95'),
+(108, 'Desenvolvimento Web I', '85'),
+(109, 'Sistemas Operacionais', '70'),
+(110, 'Matemática Discreta', '60');
+INSERT INTO Materia (codMateria, nome, cargaHoraria) VALUES
+(111, 'Programação Orientada a Objetos', '80'),
+(112, 'Análise de Algoritmos', '90'),
+(113, 'Banco de Dados II', '75'),
+(114, 'Engenharia de Software II', '90'),
+(115, 'Redes de Computadores II', '70');
+
+-- Populando a tabela Curso_has_Materia (associando cursos e matérias)
+INSERT INTO Curso_has_Materia (Curso_codigo, Materia_codMateria) VALUES
+(1, 101), (1, 102), (1, 103), (1, 104), (1, 108),
+(2, 101), (2, 102), (2, 103), (2, 104), (2, 109), (2, 110),
+(3, 101), (3, 102), (3, 104), (3, 111), (3, 114),
+(4, 105), (4, 109),
+(5, 106),
+(6, 107), (6, 110), (6, 112),
+(7, 101), (7, 108),
+(8, 103), (8, 113),
+(9, 101), (9, 103), (9, 109),
+(10, 101), (10, 108);
+INSERT INTO Curso_has_Materia (Curso_codigo, Materia_codMateria) VALUES
+(1, 111), (2, 111), (3, 103), (4, 106), (5, 105);
+
+-- Populando a tabela Aluno
+INSERT INTO Aluno (matricula, nome, Curso_codCurso) VALUES
+(2023001, 'Ana Silva', 1),
+(2023002, 'Pedro Oliveira', 2),
+(2023003, 'Carla Souza', 1),
+(2023004, 'Lucas Pereira', 3),
+(2023005, 'Mariana Costa', 4),
+(2024001, 'Gabriel Rocha', 5),
+(2024002, 'Beatriz Santos', 6),
+(2024003, 'Rafael Almeida', 7),
+(2024004, 'Isabela Ferreira', 8),
+(2024005, 'Thiago Gomes', 9);
+INSERT INTO Aluno (matricula, nome, Curso_codCurso) VALUES
+(2024006, 'Juliana Martins', 10),
+(2024007, 'Felipe Azevedo', 1);
+
+-- Populando a tabela email
+INSERT INTO email (codEmail, email, Aluno_matricula) VALUES
+(1, 'ana.silva@email.com', 2023001),
+(2, 'pedro.oliveira@email.com', 2023002),
+(3, 'carla.souza@email.com', 2023003),
+(4, 'lucas.pereira@email.com', 2023004),
+(5, 'mariana.costa@email.com', 2023005),
+(6, 'gabriel.rocha@email.com', 2024001),
+(7, 'beatriz.santos@email.com', 2024002),
+(8, 'rafael.almeida@email.com', 2024003),
+(9, 'isabela.ferreira@email.com', 2024004),
+(10, 'thiago.gomes@email.com', 2024005);
+INSERT INTO email (codEmail, email, Aluno_matricula) VALUES
+(11, 'juliana.martins@email.com', 2024006),
+(12, 'felipe.azevedo@email.com', 2024007);
+
+-- Populando a tabela Professor
+INSERT INTO Professor (matriculaProfessor, email) VALUES
+(3001, 'professor1@email.com'),
+(3002, 'professor2@email.com'),
+(3003, 'professor3@email.com'),
+(3004, 'professor4@email.com'),
+(3005, 'professor5@email.com'),
+(3006, 'professor6@email.com'),
+(3007, 'professor7@email.com'),
+(3008, 'professor8@email.com'),
+(3009, 'professor9@email.com'),
+(3010, 'professor10@email.com');
+INSERT INTO Professor (matriculaProfessor, email) VALUES
+(3011, 'professor11@email.com'),
+(3012, 'professor12@email.com');
+
+-- Populando a tabela Disciplina (associando matérias e professores)
+INSERT INTO Disciplina (codDisciplina, Materia_codMateria, vagas, Professor_matriculaProfessor) VALUES
+(401, 101, '30', 3001),
+(402, 102, '25', 3002),
+(403, 103, '35', 3003),
+(404, 104, '20', 3004),
+(405, 105, '30', 3005),
+(406, 106, '25', 3006),
+(407, 107, '20', 3007),
+(408, 108, '35', 3008),
+(409, 109, '30', 3009),
+(410, 110, '25', 3010);
+INSERT INTO Disciplina (codDisciplina, Materia_codMateria, vagas, Professor_matriculaProfessor) VALUES
+(411, 111, '30', 3001),
+(412, 112, '25', 3002),
+(413, 113, '35', 3003),
+(414, 114, '20', 3004),
+(415, 115, '30', 3005);
